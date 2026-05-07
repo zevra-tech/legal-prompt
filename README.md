@@ -6,24 +6,44 @@ Chaque prompt est une commande slash (`/veille-jo`, `/jurisprudence`...) qui tra
 
 ## ⚡ Installation (2 min)
 
-### 1. Connecte les MCP dans Claude Desktop
+### 1. Crée ton compte et récupère ta clé API
 
-Ouvre `~/Library/Application Support/Claude/claude_desktop_config.json` (macOS) ou `%APPDATA%\Claude\claude_desktop_config.json` (Windows) et ajoute :
+Avant toute chose, il te faut une clé API pour authentifier les requêtes vers les MCP juridiques :
+
+1. Crée un compte sur **[mcp-juridique.com](https://mcp-juridique.com)**
+2. Génère une `api_key` depuis ton tableau de bord
+3. Garde-la sous la main pour l'étape suivante
+
+### 2. Connecte les MCP dans Claude Desktop
+
+Ouvre `~/Library/Application Support/Claude/claude_desktop_config.json` (macOS) ou `%APPDATA%\Claude\claude_desktop_config.json` (Windows) et ajoute (en remplaçant `YOUR_API_KEY` par ta clé) :
 
 ```json
 {
   "mcpServers": {
-    "jorf": { "url": "https://jorf-mcp.super-novia.io/mcp" },
-    "juri": { "url": "https://juri-mcp.super-novia.io/mcp" },
-    "kali": { "url": "https://kali-mcp.super-novia.io/mcp" },
-    "code": { "url": "https://code-mcp.super-novia.io/mcp" }
+    "jorf": {
+      "url": "https://jorf-mcp.super-novia.io/mcp",
+      "headers": { "Authorization": "Bearer YOUR_API_KEY" }
+    },
+    "juri": {
+      "url": "https://juri-mcp.super-novia.io/mcp",
+      "headers": { "Authorization": "Bearer YOUR_API_KEY" }
+    },
+    "kali": {
+      "url": "https://kali-mcp.super-novia.io/mcp",
+      "headers": { "Authorization": "Bearer YOUR_API_KEY" }
+    },
+    "code": {
+      "url": "https://code-mcp.super-novia.io/mcp",
+      "headers": { "Authorization": "Bearer YOUR_API_KEY" }
+    }
   }
 }
 ```
 
 Redémarre Claude Desktop.
 
-### 2. Installe les prompts
+### 3. Installe les prompts
 
 Copie les fichiers `.md` du dossier `prompts/` dans :
 
@@ -37,7 +57,7 @@ git clone https://github.com/super-novia/legal-prompts.git
 cp legal-prompts/prompts/*.md ~/Library/Application\ Support/Claude/prompts/
 ```
 
-### 3. Utilise
+### 4. Utilise
 
 Dans Claude, tape `/` pour voir les commandes disponibles.
 
