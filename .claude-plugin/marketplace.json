@@ -1,0 +1,17 @@
+{
+  "name": "legal-prompt",
+  "owner": {
+    "name": "zevra-tech",
+    "url": "https://github.com/zevra-tech"
+  },
+  "plugins": [
+    {
+      "name": "legal-prompt",
+      "source": "./",
+      "description": "Pack de prompts juridiques français : slash commands + skills branchés sur les MCP Légifrance, JORF, jurisprudence et conventions collectives.",
+      "version": "0.1.0",
+      "category": "legal",
+      "tags": ["legal", "juridique", "france", "legifrance", "mcp"]
+    }
+  ]
+}

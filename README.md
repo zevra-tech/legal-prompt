@@ -1,10 +1,10 @@
 # 🇫🇷 Legal Prompts — Outils Claude pour avocats & juristes
 
-Pack de prompts prêts à l'emploi pour **Claude Desktop** ou **Claude Code**, branchés sur les MCP juridiques français de [super-novia.io](https://super-novia.io).
+Pack juridique français pour **Claude Code**, livré sous forme de **plugin** : 5 slash commands (`/veille-jo`, `/jurisprudence`, `/article`, `/convention`, `/note-juridique`) **+** 5 skills auto-déclenchables, branchés sur les MCP officiels Légifrance / JORF / jurisprudence / conventions collectives.
 
-Chaque prompt est une commande slash (`/veille-jo`, `/jurisprudence`...) qui transforme Claude en assistant juridique spécialisé, avec accès direct aux sources officielles : Légifrance, JORF, jurisprudence judiciaire, conventions collectives.
+Tu choisis ton ergonomie : invocation explicite (`/jurisprudence salarié protégé...`) ou déclenchement automatique par Claude quand tu poses une question juridique en langage naturel.
 
-## ⚡ Installation (2 min)
+## ⚡ Installation
 
 ### 1. Crée ton compte et récupère ta clé API
 
@@ -14,7 +14,7 @@ Avant toute chose, il te faut une clé API pour authentifier les requêtes vers 
 2. Génère une `api_key` depuis ton tableau de bord
 3. Garde-la sous la main pour l'étape suivante
 
-### 2. Connecte les MCP dans Claude Desktop
+### 2. Connecte les MCP
 
 Ouvre `~/Library/Application Support/Claude/claude_desktop_config.json` (macOS) ou `%APPDATA%\Claude\claude_desktop_config.json` (Windows) et ajoute (en remplaçant `YOUR_API_KEY` par ta clé) :
 
@@ -43,33 +43,57 @@ Ouvre `~/Library/Application Support/Claude/claude_desktop_config.json` (macOS) 
 
 Redémarre Claude Desktop.
 
-### 3. Installe les prompts
+### 3. Installe le plugin (recommandé — Claude Code)
 
-Copie les fichiers `.md` du dossier `prompts/` dans :
+Dans Claude Code :
 
-- **macOS** : `~/Library/Application Support/Claude/prompts/`
-- **Windows** : `%APPDATA%\Claude\prompts\`
+```
+/plugin marketplace add zevra-tech/legal-prompt
+/plugin install legal-prompt@legal-prompt
+```
 
-Ou clone le repo directement :
+Tu récupères d'un coup les 5 slash commands **et** les 5 skills.
+
+#### Alternative : install manuelle des fichiers
+
+Si tu veux juste copier les fichiers :
 
 ```bash
-git clone https://github.com/super-novia/legal-prompts.git
-cp legal-prompts/prompts/*.md ~/Library/Application\ Support/Claude/prompts/
+git clone https://github.com/zevra-tech/legal-prompt.git
+# Slash commands
+cp legal-prompt/commands/*.md ~/.claude/commands/
+# Skills (chaque skill est un dossier avec SKILL.md)
+cp -r legal-prompt/skills/* ~/.claude/skills/
 ```
 
 ### 4. Utilise
 
-Dans Claude, tape `/` pour voir les commandes disponibles.
+- **Slash commands** — tape `/` dans Claude pour voir la liste, puis `/jurisprudence rupture conventionnelle salarié protégé`
+- **Skills** — pose ta question en langage naturel, Claude déclenche le skill pertinent : *"Cherche-moi de la jurisprudence récente sur la rupture conventionnelle d'un salarié protégé"*
 
 ## 📚 Les 5 prompts
 
-| Commande | Usage | MCP utilisés |
+| Nom | Usage | MCP utilisés |
 |---|---|---|
-| [`/veille-jo`](prompts/veille-jo.md) | Brief des publications JO du jour, filtré par domaine | JORF |
-| [`/jurisprudence`](prompts/jurisprudence.md) | Recherche + analyse de jurisprudence | JURI |
-| [`/article`](prompts/article.md) | Décryptage d'un article de code (toutes versions) | CODE |
-| [`/convention`](prompts/convention.md) | Question sur une convention collective via IDCC | KALI |
-| [`/note-juridique`](prompts/note-juridique.md) | Note de synthèse multi-sources sur une question | Tous |
+| [`veille-jo`](commands/veille-jo.md) · [skill](skills/veille-jo/SKILL.md) | Brief des publications JO du jour, filtré par domaine | JORF |
+| [`jurisprudence`](commands/jurisprudence.md) · [skill](skills/jurisprudence/SKILL.md) | Recherche + analyse de jurisprudence | JURI |
+| [`article`](commands/article.md) · [skill](skills/article/SKILL.md) | Décryptage d'un article de code (toutes versions) | CODE |
+| [`convention`](commands/convention.md) · [skill](skills/convention/SKILL.md) | Question sur une convention collective via IDCC | KALI |
+| [`note-juridique`](commands/note-juridique.md) · [skill](skills/note-juridique/SKILL.md) | Note de synthèse multi-sources sur une question | Tous |
+
+## 🧩 Structure du repo
+
+```
+.
+├── .claude-plugin/
+│   ├── plugin.json          (manifest du plugin)
+│   └── marketplace.json     (déclare ce repo comme marketplace)
+├── commands/                (slash commands invoquées explicitement)
+├── skills/                  (skills auto-déclenchés par Claude)
+│   ├── veille-jo/SKILL.md
+│   └── ...
+└── templates/_template.md   (modèle pour contribuer)
+```
 
 ## 🎯 Pour qui ?
 
@@ -77,7 +101,7 @@ Avocats, juristes d'entreprise, étudiants en droit, paralegals — tous ceux qu
 
 ## 🤝 Contribution
 
-PRs bienvenues. Format d'un prompt : voir [`prompts/_template.md`](prompts/_template.md).
+PRs bienvenues. Format d'un prompt : voir [`templates/_template.md`](templates/_template.md).
 
 ## 📜 Licence
 
@@ -85,9 +109,8 @@ MIT — utilise, fork, modifie librement.
 
 ## 🔗 Liens
 
-- MCP servers : [super-novia.io](https://super-novia.io)
+- API & MCP juridiques : [mcp-juridique.com](https://mcp-juridique.com)
 - Plume (édition de documents juridiques) : [plume.zevra.tech](https://plume.zevra.tech)
-- Twitter/LinkedIn : [@joachim_xxx](#)
 
 ---
 

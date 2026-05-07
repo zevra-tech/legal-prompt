@@ -1,0 +1,13 @@
+{
+  "name": "legal-prompt",
+  "version": "0.1.0",
+  "description": "Pack de prompts juridiques français pour Claude — slash commands + skills branchés sur les MCP Légifrance, JORF, jurisprudence et conventions collectives.",
+  "author": {
+    "name": "Zevra Tech",
+    "url": "https://zevra.tech"
+  },
+  "homepage": "https://github.com/zevra-tech/legal-prompt",
+  "repository": "https://github.com/zevra-tech/legal-prompt",
+  "license": "MIT",
+  "keywords": ["legal", "law", "juridique", "france", "legifrance", "jurisprudence", "mcp"]
+}
