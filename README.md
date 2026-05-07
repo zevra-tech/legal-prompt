@@ -108,6 +108,47 @@ cp -r legal-prompt/skills/*  ~/.claude/skills/
 
 Plus une commande de configuration : [`/legal-setup`](commands/legal-setup.md) — enregistre ta clé API une fois pour toutes.
 
+## 💼 Cas d'usage concrets
+
+### 1. Veille du matin pour avocat en droit social
+8h45, café, tu veux savoir si le JO d'hier a sorti quelque chose qui touche tes dossiers en cours.
+> `/veille-jo droit social hier`
+> ou : *"Brief des publications JO d'hier en droit social, focus impact pratique"*
+
+→ 2-3 textes pertinents max, NOR, portée concrète, action recommandée.
+
+### 2. Préparer une plaidoirie devant les Prud'hommes
+Audience dans 3 jours sur un licenciement pour faute grave d'un cadre. Tu veux la position de la Cour de cassation et anticiper les arguments adverses.
+> `/jurisprudence faute grave cadre absences répétées non justifiées cassation`
+> ou : *"Cherche-moi des arrêts récents de la Cour de cassation sur la qualification de faute grave en cas d'absences répétées d'un cadre"*
+
+→ 3-5 arrêts clés, citation utile (≤15 mots), apport, points de vigilance.
+
+### 3. Décrypter un article pour un client non-juriste
+Ton client gérant de PME ne comprend pas pourquoi son comptable lui parle de l'article 1240 du Code civil.
+> `/article 1240 Code civil`
+
+→ Texte officiel + place dans le code + explication en français clair.
+
+### 4. Question pointue sur une convention collective
+DRH te demande le préavis d'un cadre Syntec qui démissionne après 4 ans d'ancienneté.
+> `/convention 1486 préavis cadre démission 4 ans ancienneté`
+
+→ Chiffre exact, article de la convention cité, articulation avec le Code du travail.
+
+### 5. Note de consultation pour un confrère
+Un confrère te demande une analyse sur la rupture conventionnelle d'un salarié protégé.
+> `/note-juridique rupture conventionnelle salarié protégé complete`
+> ou : *"Rédige-moi une note juridique structurée sur la rupture conventionnelle d'un salarié protégé"*
+
+→ Note en 6 sections (question / synthèse / cadre / analyse / reco / vigilance) avec sources Légifrance.
+
+### 6. Tracer l'historique d'un article (litige sur faits anciens)
+Dossier sur des faits de 2018 : tu veux la version de l'article applicable à l'époque, pas l'actuelle.
+> `/article L. 1234-5 Code du travail historique`
+
+→ Versions successives, dates, lois de modification, synthèse de l'évolution.
+
 ## 🧩 Structure du repo
 
 ```
