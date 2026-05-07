@@ -8,42 +8,37 @@ Tu choisis ton ergonomie : invocation explicite (`/jurisprudence salarié proté
 
 ### 1. Crée ton compte et récupère ta clé API
 
-Avant toute chose, il te faut une clé API pour authentifier les requêtes vers les MCP juridiques :
-
 1. Crée un compte sur **[mcp-juridique.com](https://mcp-juridique.com)**
 2. Génère une `api_key` depuis ton tableau de bord
-3. Garde-la sous la main pour l'étape suivante
+3. Garde-la sous la main pour l'étape 2
 
-### 2. Connecte les MCP
+### 2. Expose ta clé API en variable d'environnement
 
-Ouvre `~/Library/Application Support/Claude/claude_desktop_config.json` (macOS) ou `%APPDATA%\Claude\claude_desktop_config.json` (Windows) et ajoute (en remplaçant `YOUR_API_KEY` par ta clé) :
+Le plugin lit la clé via `MCP_JURIDIQUE_API_KEY`. Choisis une option :
+
+**Option A — shell (simple)**
+
+Dans `~/.zshrc` (macOS/Linux) ou `~/.bashrc` :
+
+```bash
+export MCP_JURIDIQUE_API_KEY="ta_cle_ici"
+```
+
+Puis recharge : `source ~/.zshrc` (et redémarre Claude Code).
+
+**Option B — settings Claude Code**
+
+Dans `~/.claude/settings.json` :
 
 ```json
 {
-  "mcpServers": {
-    "jorf": {
-      "url": "https://jorf-mcp.super-novia.io/mcp",
-      "headers": { "Authorization": "Bearer YOUR_API_KEY" }
-    },
-    "juri": {
-      "url": "https://juri-mcp.super-novia.io/mcp",
-      "headers": { "Authorization": "Bearer YOUR_API_KEY" }
-    },
-    "kali": {
-      "url": "https://kali-mcp.super-novia.io/mcp",
-      "headers": { "Authorization": "Bearer YOUR_API_KEY" }
-    },
-    "code": {
-      "url": "https://code-mcp.super-novia.io/mcp",
-      "headers": { "Authorization": "Bearer YOUR_API_KEY" }
-    }
+  "env": {
+    "MCP_JURIDIQUE_API_KEY": "ta_cle_ici"
   }
 }
 ```
 
-Redémarre Claude Desktop.
-
-### 3. Installe le plugin (recommandé — Claude Code)
+### 3. Installe le plugin
 
 Dans Claude Code :
 
@@ -52,14 +47,19 @@ Dans Claude Code :
 /plugin install legal-prompt@legal-prompt
 ```
 
-Tu récupères d'un coup les 5 slash commands **et** les 5 skills.
+Tu récupères d'un coup :
+- les 4 MCP juridiques (JORF, JURI, KALI, CODE) déjà configurés avec ta clé
+- les 5 slash commands
+- les 5 skills auto-déclenchables
 
 #### Alternative : install manuelle des fichiers
 
-Si tu veux juste copier les fichiers :
+Si tu ne veux pas passer par le plugin :
 
 ```bash
 git clone https://github.com/zevra-tech/legal-prompt.git
+# MCP servers (à fusionner dans ton claude_desktop_config.json)
+cat legal-prompt/.mcp.json
 # Slash commands
 cp legal-prompt/commands/*.md ~/.claude/commands/
 # Skills (chaque skill est un dossier avec SKILL.md)
@@ -88,6 +88,7 @@ cp -r legal-prompt/skills/* ~/.claude/skills/
 ├── .claude-plugin/
 │   ├── plugin.json          (manifest du plugin)
 │   └── marketplace.json     (déclare ce repo comme marketplace)
+├── .mcp.json                (4 MCP juridiques préconfigurés via env var)
 ├── commands/                (slash commands invoquées explicitement)
 ├── skills/                  (skills auto-déclenchés par Claude)
 │   ├── veille-jo/SKILL.md

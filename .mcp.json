@@ -1,0 +1,32 @@
+{
+  "mcpServers": {
+    "jorf": {
+      "type": "http",
+      "url": "https://jorf-mcp.super-novia.io/mcp",
+      "headers": {
+        "Authorization": "Bearer ${MCP_JURIDIQUE_API_KEY}"
+      }
+    },
+    "juri": {
+      "type": "http",
+      "url": "https://juri-mcp.super-novia.io/mcp",
+      "headers": {
+        "Authorization": "Bearer ${MCP_JURIDIQUE_API_KEY}"
+      }
+    },
+    "kali": {
+      "type": "http",
+      "url": "https://kali-mcp.super-novia.io/mcp",
+      "headers": {
+        "Authorization": "Bearer ${MCP_JURIDIQUE_API_KEY}"
+      }
+    },
+    "code": {
+      "type": "http",
+      "url": "https://code-mcp.super-novia.io/mcp",
+      "headers": {
+        "Authorization": "Bearer ${MCP_JURIDIQUE_API_KEY}"
+      }
+    }
+  }
+}
