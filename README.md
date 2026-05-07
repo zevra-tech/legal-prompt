@@ -1,9 +1,12 @@
 # 🇫🇷 Legal Prompts — Outils Claude pour avocats & juristes
 
-Pack juridique français pour **Claude Desktop** ET **Claude Code**, branché sur les MCP officiels Légifrance / JORF / jurisprudence / conventions collectives.
+[![skills.sh](https://skills.sh/b/zevra-tech/legal-prompt)](https://skills.sh/zevra-tech/legal-prompt)
+
+Pack juridique français pour **Claude Desktop**, **Claude Code** et tout agent compatible (Cursor, Cline, Codex, Copilot...), branché sur les MCP officiels Légifrance / JORF / jurisprudence / conventions collectives.
 
 - **Claude Desktop** : installeur 1 commande qui configure les 4 MCP juridiques. Tu poses tes questions en langage naturel, Claude cite ses sources.
 - **Claude Code** : plugin complet avec 5 slash commands (`/veille-jo`, `/jurisprudence`...) **+** 5 skills auto-déclenchables.
+- **Autres agents (Cursor, Cline, Codex, Copilot...)** : skills installables via `npx skills add`.
 
 ---
 
@@ -77,6 +80,25 @@ La commande te demande ta clé API et l'enregistre dans `~/.claude/settings.json
 
 - **Slash commands** — tape `/` pour voir la liste, puis `/jurisprudence rupture conventionnelle salarié protégé`
 - **Skills** — pose ta question en langage naturel, Claude déclenche le skill pertinent
+
+---
+
+## 🌐 Installation pour autres agents (Cursor, Cline, Codex, Copilot...)
+
+Les 5 skills s'installent via [skills.sh](https://skills.sh/zevra-tech/legal-prompt) sur n'importe quel agent compatible :
+
+```bash
+# Tous les skills, globalement
+npx skills add zevra-tech/legal-prompt -g
+
+# Ou en sélectionnant un agent et un skill précis
+npx skills add zevra-tech/legal-prompt -a cursor --skill jurisprudence
+
+# Lister sans installer
+npx skills add zevra-tech/legal-prompt --list
+```
+
+Pour la connexion aux 4 MCP juridiques, configure-les manuellement dans ton agent (URL + header `Authorization: Bearer <ta_clé>` cf. [`.mcp.json`](.mcp.json)). Les slash commands `/jurisprudence`, etc., sont **spécifiques à Claude Code** — sur les autres agents, tu utilises uniquement les skills (auto-déclenchement par langage naturel).
 
 ---
 
