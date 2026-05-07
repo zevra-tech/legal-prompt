@@ -8,7 +8,7 @@
     {
       "name": "legal-prompt",
       "source": "./",
-      "description": "Pack de prompts juridiques français : slash commands + skills branchés sur les MCP Légifrance, JORF, jurisprudence et conventions collectives.",
+      "description": "French legal toolkit for Claude — search Légifrance codes, French case law (Cour de cassation et juridictions du fond), the Journal Officiel, and collective bargaining agreements (KALI). Includes 5 slash commands, 5 auto-triggered skills, and 4 preconfigured MCP servers. Built for lawyers, in-house counsel, and law students who need AI that cites official sources.",
       "version": "0.1.0",
       "category": "legal",
       "tags": ["legal", "juridique", "france", "legifrance", "mcp"]
