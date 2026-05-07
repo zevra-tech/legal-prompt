@@ -4,41 +4,13 @@ Pack juridique français pour **Claude Code**, livré sous forme de **plugin** :
 
 Tu choisis ton ergonomie : invocation explicite (`/jurisprudence salarié protégé...`) ou déclenchement automatique par Claude quand tu poses une question juridique en langage naturel.
 
-## ⚡ Installation
+## ⚡ Installation (3 étapes, ~1 min)
 
-### 1. Crée ton compte et récupère ta clé API
+### 1. Crée ton compte sur mcp-juridique.com
 
-1. Crée un compte sur **[mcp-juridique.com](https://mcp-juridique.com)**
-2. Génère une `api_key` depuis ton tableau de bord
-3. Garde-la sous la main pour l'étape 2
+[mcp-juridique.com](https://mcp-juridique.com) → inscription → génère une `api_key` depuis ton tableau de bord. Garde-la sous la main pour l'étape 3.
 
-### 2. Expose ta clé API en variable d'environnement
-
-Le plugin lit la clé via `MCP_JURIDIQUE_API_KEY`. Choisis une option :
-
-**Option A — shell (simple)**
-
-Dans `~/.zshrc` (macOS/Linux) ou `~/.bashrc` :
-
-```bash
-export MCP_JURIDIQUE_API_KEY="ta_cle_ici"
-```
-
-Puis recharge : `source ~/.zshrc` (et redémarre Claude Code).
-
-**Option B — settings Claude Code**
-
-Dans `~/.claude/settings.json` :
-
-```json
-{
-  "env": {
-    "MCP_JURIDIQUE_API_KEY": "ta_cle_ici"
-  }
-}
-```
-
-### 3. Installe le plugin
+### 2. Installe le plugin
 
 Dans Claude Code :
 
@@ -48,11 +20,24 @@ Dans Claude Code :
 ```
 
 Tu récupères d'un coup :
-- les 4 MCP juridiques (JORF, JURI, KALI, CODE) déjà configurés avec ta clé
+- les 4 MCP juridiques (JORF, JURI, KALI, CODE)
 - les 5 slash commands
 - les 5 skills auto-déclenchables
+- la commande de configuration `/legal-setup`
 
-#### Alternative : install manuelle des fichiers
+### 3. Configure ta clé avec `/legal-setup`
+
+Dans Claude Code, tape :
+
+```
+/legal-setup
+```
+
+La commande te demande de coller ta clé API, puis l'enregistre dans `~/.claude/settings.json` (jamais committée). **Redémarre Claude Code** ensuite pour que les MCP se connectent — c'est prêt.
+
+> Pas de `export` à faire, pas de fichier de config à éditer à la main.
+
+#### Alternative : install manuelle (sans plugin)
 
 Si tu ne veux pas passer par le plugin :
 
@@ -64,14 +49,15 @@ cat legal-prompt/.mcp.json
 cp legal-prompt/commands/*.md ~/.claude/commands/
 # Skills (chaque skill est un dossier avec SKILL.md)
 cp -r legal-prompt/skills/* ~/.claude/skills/
+# Et expose ta clé : export MCP_JURIDIQUE_API_KEY="..."
 ```
 
-### 4. Utilise
+### Utilise
 
 - **Slash commands** — tape `/` dans Claude pour voir la liste, puis `/jurisprudence rupture conventionnelle salarié protégé`
 - **Skills** — pose ta question en langage naturel, Claude déclenche le skill pertinent : *"Cherche-moi de la jurisprudence récente sur la rupture conventionnelle d'un salarié protégé"*
 
-## 📚 Les 5 prompts
+## 📚 Les 5 prompts juridiques
 
 | Nom | Usage | MCP utilisés |
 |---|---|---|
@@ -80,6 +66,8 @@ cp -r legal-prompt/skills/* ~/.claude/skills/
 | [`article`](commands/article.md) · [skill](skills/article/SKILL.md) | Décryptage d'un article de code (toutes versions) | CODE |
 | [`convention`](commands/convention.md) · [skill](skills/convention/SKILL.md) | Question sur une convention collective via IDCC | KALI |
 | [`note-juridique`](commands/note-juridique.md) · [skill](skills/note-juridique/SKILL.md) | Note de synthèse multi-sources sur une question | Tous |
+
+Plus une commande de configuration : [`/legal-setup`](commands/legal-setup.md) — enregistre ta clé API une fois pour toutes.
 
 ## 🧩 Structure du repo
 
